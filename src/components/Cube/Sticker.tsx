@@ -12,9 +12,9 @@ import LabelB from "./labels/label-b.png";
 
 const colorScheme: { [name in Facelet]: string } = {
   R: "#FB4031", // red
-  L: "#EBA330", // orange
+  L: "#F59F16", // orange
   U: "#FFFFFF", // white
-  D: "#FFE736", // yellow
+  D: "#fcfc19", // yellow
   F: "#1CBD35", // green
   B: "#2D65EE", // blue
   O: "#718096", // display oriented facelet same as masked facelet

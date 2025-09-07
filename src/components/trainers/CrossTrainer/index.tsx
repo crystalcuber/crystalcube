@@ -52,7 +52,6 @@ import solver from "./solver";
 import SolutionsViewer, { DisplayedSolution } from "../common/SolutionsViewer";
 import { useHotkeys } from "react-hotkeys-hook";
 import KeyboardControls from "./settings/KeyboardControls";
-import { plausible } from "src/App";
 import {
   ColorNeutrality,
   CrossColor,
@@ -84,12 +83,7 @@ export default function CrossTrainer() {
 
   const mainAction = areSolutionsHidden
     ? showSolutions
-    : () => {
-        plausible.trackEvent("trainer-generate", {
-          props: { method: "Cross" },
-        });
-        getNext();
-      };
+    : getNext;
 
   const copyText = generateCopyText(scramble, solutions);
 
