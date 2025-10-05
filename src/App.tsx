@@ -17,15 +17,6 @@ import OHScramble from "./pages/OHScramble";
 import { ReactNode } from "react";
 import AboutPage from "./pages/About";
 
-import Plausible from "plausible-tracker";
-
-export const plausible = Plausible({
-  domain: "crystalcuber.com",
-  apiHost: "/external",
-});
-
-plausible.enableAutoPageviews();
-
 function Layout({ children }: { children: ReactNode }) {
   return (
     <Flex direction="column" h="100vh">

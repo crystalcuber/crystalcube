@@ -50,7 +50,6 @@ import CrossLevelSelect from "./cards/CrossLevelSelect";
 import PreferenceSelect from "./cards/PreferenceSelect";
 import { useHotkeys } from "react-hotkeys-hook";
 import KeyboardControls from "./cards/KeyboardControls";
-import { plausible } from "src/App";
 
 export default function CrossTrainer() {
   const [areSolutionsHidden, setSolutionsHidden] = useState(true);
@@ -75,10 +74,7 @@ export default function CrossTrainer() {
     crossOptions.solutionOrientation
   );
 
-  const mainAction = areSolutionsHidden ? showSolutions : () => {
-    plausible.trackEvent("trainer-generate", { props: { method: "Cross" } });
-    getNext();
-  };
+  const mainAction = areSolutionsHidden ? showSolutions : getNext;
 
   const copyText = generateCopyText({
     scramble,
