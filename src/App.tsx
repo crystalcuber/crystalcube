@@ -5,6 +5,7 @@ import {
   RouterProvider,
   Outlet,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import { Container, Flex } from "@chakra-ui/react";
 import NavBar from "./components/NavBar/NavBar";
@@ -14,10 +15,24 @@ import CrossTrainerPage from "./pages/train/CrossTrainerPage";
 import EOStepTrainerPage from "./pages/train/EOStepTrainerPage";
 import TrainerPage from "./pages/train";
 import OHScramble from "./pages/OHScramble";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import AboutPage from "./pages/About";
 
 function Layout({ children }: { children: ReactNode }) {
+  const location = useLocation();
+
+  // analytics
+  useEffect(() => {
+    if (!import.meta.env.PROD) return;
+    setTimeout(() => {
+      if (typeof (window as any).goatcounter.count === "function") {
+        (window as any).goatcounter?.count({
+          path: location.pathname + location.search + location.hash,
+        });
+      }
+    }, 100); // wait for goatcounter to load
+  }, [location]);
+
   return (
     <Flex direction="column" h="100vh">
       <NavBar />
@@ -57,8 +72,8 @@ const router = createBrowserRouter(
         <Route path="ohscramble" element={<OHScramble />} />
       </Route>
       <Route path="about" element={<AboutPage />} />
-    </Route>
-  )
+    </Route>,
+  ),
 );
 
 export default function App() {
